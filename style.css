@@ -1,0 +1,104 @@
+body, html {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    background-color: black;
+}
+
+#content {
+    box-sizing: border-box;
+    height: 100%;
+    width: 100%;
+    //padding: 0.5em;
+    color: white;
+    //background-color: yellow;
+    display: flex;
+    font-family: "Roboto Mono";
+    font-weight: 500;
+    letter-spacing: 0.18em;
+}
+
+#canvas {
+    background-color: white;
+    flex: 1 1 0;
+    width: 0px;
+    max-width: 100%;
+    max-height: 100%;
+    align-self: center;
+    object-fit: contain;
+}
+
+#form {
+    //background-color: red;
+    display: flex;
+    flex-direction: column;
+    align-items: right;
+    justify-content: center;
+    gap: 1em;
+    padding: 1.5em;
+}
+
+@media (orientation: portrait) {
+
+    #content {
+        flex-direction: column;
+    }
+
+    #canvas {
+        width: auto;
+        height: 0px;
+    }
+
+}
+
+#inputText {
+    background-color: black;
+    border: 1px solid white;
+    color: white;
+    box-sizing: border-box;
+    padding: 0.5em;
+    width: 100%;
+    font-size: inherit;
+    font-family: inherit;
+    font-weight: 700;
+    letter-spacing: inherit;
+}
+
+#inputText:focus {
+    border: 1px dashed white;
+    outline: none;
+}
+
+#types {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.typeRadio {
+    margin: 0.5em 0;
+}
+
+#submitButton {
+    box-sizing: border-box;
+    background-color: white;
+    border: 1px solid white;
+    color: black;
+    padding: 0.5em;
+    width: 100%;
+    font-size: inherit;
+    font-family: inherit;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+}
+
+#submitButton:hover {
+    background-color: black;
+    color: white;
+}
+
+#submitButton:active {
+    background-color: white;
+    color: black;
+}
