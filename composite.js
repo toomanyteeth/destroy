@@ -1,10 +1,11 @@
 
-const boxSize = 160;
-const boxX = 880;
-const boxY = 600;
+const boxSize = 240;
+const boxX = 840;
+const boxY = 560;
+const boxCorner = 16;
 const boxPadding = 10;
 
-const textBoxSize = 160 - boxPadding*2;
+const textBoxSize = boxSize - boxPadding*2;
 const textBoxX = boxX + boxPadding;
 const textBoxY = boxY + boxPadding;
 
@@ -14,8 +15,12 @@ var wordDimension = 0;
 var fontSize = 0;
 
 var animationURLs = [];
-var animationLengths = [60]
+var animationLengths = [60];
+var impactFrames = [[40, 46]];
 var animationIndex = 0;
+
+var playing = false;
+var intervalID = 0;
 
 let processor = {
 
@@ -57,7 +62,7 @@ let processor = {
         this.context.fill();
 
         this.context.beginPath();
-        this.context.roundRect(880, 600, 160, 160, 8);
+        this.context.roundRect(boxX, boxY, boxSize, boxSize, boxCorner);
         this.context.fillStyle = "black";
         this.context.fill();
 
@@ -79,18 +84,34 @@ let processor = {
     },
 
     playAnimation: function() {
+        playing = true;
         let self = this;
         var frameIndex = 0;
-        setInterval(function() {
+        intervalID = setInterval(function() {
             var image = new Image();
             image.onload = function() {
                 self.drawWord();
                 self.context.drawImage(image, 0, 0);
             }
             image.src = animationURLs[animationIndex][frameIndex];
+            if(frameIndex >= impactFrames[animationIndex][0]) {
+                if(frameIndex < impactFrames[animationIndex][1]) {
+                    document.getElementById("colorOverlay").style.backgroundColor = `hsl(${Math.random()*360}, 100%, 85%)`;
+                } else {
+                    document.getElementById("colorOverlay").style.backgroundColor = "black";
+                }
+            }
             frameIndex++;
-            if(frameIndex == animationURLs[animationIndex].length) return;
+            if(frameIndex == animationURLs[animationIndex].length) {
+                stopAnimation;
+            }
         }, 1000/12);
+    },
+
+    stopAnimation: function() {
+        playing = false;
+        clearInterval(intervalID);
+        frameIndex = 0;
     }
 
 };
@@ -100,10 +121,14 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 document.getElementById("inputText").addEventListener("input", (inputObject) => {
+    processor.stopAnimation();
     targetText = inputObject.target.value;
     processor.drawWord();
 });
 
 document.getElementById("submitButton").addEventListener("click", () => {
-    processor.playAnimation();
+    if(!playing){
+        
+        processor.playAnimation();
+    }
 });
