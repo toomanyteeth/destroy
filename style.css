@@ -37,6 +37,7 @@ body, html {
     justify-content: center;
     gap: 1em;
     padding: 1.5em;
+    border: none;
 }
 
 #colorOverlay {
@@ -116,4 +117,9 @@ body, html {
 #submitButton:active {
     background-color: white;
     color: black;
+}
+
+:disabled {
+    opacity: 0.65;
+    pointer-events: none;
 }

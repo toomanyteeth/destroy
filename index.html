@@ -19,12 +19,9 @@
     <body>
         <div id="content">
             
-            <video id="video">
-                <source src="videos/holy light.mp4" type="video/mp4">
-            </video>
             <canvas id="composition" width="1920" height="1080"></canvas>
 
-            <div id="form">
+            <fieldset id="form">
 
                 <input type="text" id="inputText" name="inputText" placeholder="what?">
 
@@ -41,22 +38,22 @@
                     </li>
 
                     <li class="typeRadio">
-                        <input type="radio" id="water" name="type" value="2">
+                        <input type="radio" id="water" name="type" value="2" disabled>
                         <label for="water">crushing water</label>
                     </li>
 
                     <li class="typeRadio">
-                        <input type="radio" id="decay" name="type" value="3">
+                        <input type="radio" id="decay" name="type" value="3" disabled>
                         <label for="decay">inexorable decay</label>
                     </li>
 
                     <li class="typeRadio">
                         <input type="radio" id="flesh" name="type" value="4">
-                        <label for="flesh">overwhelm the flesh</label>
+                        <label for="flesh">undo the flesh</label>
                     </li>
 
                     <li class="typeRadio">
-                        <input type="radio" id="gravity" name="type" value="5">
+                        <input type="radio" id="gravity" name="type" value="5" disabled>
                         <label for="gravity">absolute gravity</label>
                     </li>
 
@@ -64,7 +61,7 @@
 
                 <input id="submitButton" type="submit" value="destroy">
 
-            </div>
+            </fieldset>
             
         </div>
 

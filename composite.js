@@ -15,8 +15,8 @@ var wordDimension = 0;
 var fontSize = 0;
 
 var animationURLs = [];
-var animationLengths = [60];
-var impactFrames = [[40, 46]];
+var animationLengths = [60, 58];
+var impactFrames = [[40, 46], [12, 20]];
 var animationIndex = 0;
 
 var playing = false;
@@ -103,7 +103,7 @@ let processor = {
             }
             frameIndex++;
             if(frameIndex == animationURLs[animationIndex].length) {
-                stopAnimation;
+                self.stopAnimation();
             }
         }, 1000/12);
     },
@@ -112,12 +112,15 @@ let processor = {
         playing = false;
         clearInterval(intervalID);
         frameIndex = 0;
+        document.getElementById("form").removeAttribute("disabled");
     }
 
 };
 
 document.addEventListener("DOMContentLoaded", () => {
     processor.doLoad();
+    targetText = document.getElementById("inputText").value;
+    processor.drawWord();
 });
 
 document.getElementById("inputText").addEventListener("input", (inputObject) => {
@@ -128,7 +131,9 @@ document.getElementById("inputText").addEventListener("input", (inputObject) => 
 
 document.getElementById("submitButton").addEventListener("click", () => {
     if(!playing){
-        
+        animationIndex = document.querySelector('input[name="type"]:checked').value;
         processor.playAnimation();
+        document.getElementById("inputText").value = "";
+        document.getElementById("form").setAttribute("disabled", "disabled");
     }
 });
