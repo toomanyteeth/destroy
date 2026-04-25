@@ -15,8 +15,8 @@ var wordDimension = 0;
 var fontSize = 0;
 
 var animationURLs = [];
-var animationLengths = [60, 58];
-var impactFrames = [[40, 46], [12, 20]];
+var animationLengths = [60, 58, 0, 0, 65];
+var impactFrames = [[40, 46], [12, 20], [], [], []];
 var animationIndex = 0;
 
 var playing = false;
@@ -113,11 +113,16 @@ let processor = {
         clearInterval(intervalID);
         frameIndex = 0;
         document.getElementById("form").removeAttribute("disabled");
+        document.getElementById("inputText").focus();
     }
 
 };
 
 document.addEventListener("DOMContentLoaded", () => {
+    const URLParams = new URLSearchParams(window.location.search);
+    document.getElementById("content").style.padding = `0 ${URLParams.get("overscan")}`;
+
+    document.getElementById("inputText").focus();
     processor.doLoad();
     targetText = document.getElementById("inputText").value;
     processor.drawWord();
