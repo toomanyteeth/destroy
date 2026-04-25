@@ -15,7 +15,7 @@ var wordDimension = 0;
 var fontSize = 0;
 
 var animationURLs = [];
-var animationLengths = [60, 58, 0, 0, 65];
+var animationLengths = [60, 59, 0, 0, 56];
 var impactFrames = [[40, 46], [12, 20], [], [], []];
 var animationIndex = 0;
 
